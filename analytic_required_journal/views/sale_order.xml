@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <!-- inhert sale form view  -->
+        <record id="view_order_form_discount" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="before">  
+                    <field name="is_contract" invisible="1"/>     
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_contract', '=', True)]}</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
